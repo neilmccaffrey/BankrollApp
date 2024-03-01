@@ -11,25 +11,24 @@ import Button from '../../components/Button/Button';
 
 import {useDispatch} from 'react-redux';
 import {updateBankroll} from '../../redux/reducers/Bankroll';
-import {addSession} from '../../redux/reducers/Sessions';
+import {updateSession} from '../../redux/reducers/Sessions';
 
-import uuid from 'react-native-uuid';
 import DatePicker from 'react-native-date-picker';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-const Session = ({navigation}) => {
-  const [value, setValue] = useState('Cash game');
-  const [buyIn, setBuyIn] = useState('');
-  const [cashOut, setCashOut] = useState('');
-  const [hours, setHours] = useState('8');
-  const [minutes, setMinutes] = useState('0');
+const UpdateSession = ({route, navigation}) => {
+  const [value, setValue] = useState(route.params.gameType);
+  const [buyIn, setBuyIn] = useState(route.params.buyIn);
+  const [cashOut, setCashOut] = useState(route.params.cashOut);
+  const [hours, setHours] = useState(route.params.hours);
+  const [minutes, setMinutes] = useState(route.params.minutes);
   const dispatch = useDispatch();
 
   //date picker
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(route.params.date));
   const [open, setOpen] = useState(false);
 
   //duration picker
@@ -61,7 +60,6 @@ const Session = ({navigation}) => {
     setMinutes(val.getMinutes());
     setOpenDuration(false);
   };
-
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <View style={style.container}>
@@ -145,7 +143,7 @@ const Session = ({navigation}) => {
           <View>
             <Input
               keyboardType={'number-pad'}
-              placeholder={'$0'}
+              initialValue={buyIn}
               label={'Buy-in:'}
               onChangeText={val => setBuyIn(val)}
             />
@@ -153,7 +151,7 @@ const Session = ({navigation}) => {
           <View>
             <Input
               keyboardType={'number-pad'}
-              placeholder={'$0'}
+              initialValue={cashOut}
               label={'Cash out:'}
               onChangeText={val => setCashOut(val)}
             />
@@ -161,16 +159,15 @@ const Session = ({navigation}) => {
         </View>
         <View style={style.button}>
           <Button
-            title={'Save Session'}
+            title={'Update Session'}
             isDisabled={handleDisabled()}
             onPress={() => {
               //update bankroll with cashout amount minus buy-in amount
               dispatch(updateBankroll(cashOut - buyIn));
               dispatch(
-                addSession({
+                updateSession({
                   result: cashOut - buyIn,
-                  //use uuid to generate session id for edit/delete
-                  sessionId: uuid.v4(),
+                  sessionId: route.params.sessionId,
                   gameType: value,
                   date: date,
                   hours: hours,
@@ -189,4 +186,4 @@ const Session = ({navigation}) => {
   );
 };
 
-export default Session;
+export default UpdateSession;

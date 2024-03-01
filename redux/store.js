@@ -1,7 +1,7 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {persistReducer, persistStore} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {logger} from 'redux-logger';
+//import {logger} from 'redux-logger';
 
 import Bankroll from './reducers/Bankroll';
 import Sessions from './reducers/Sessions';

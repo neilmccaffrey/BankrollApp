@@ -1,25 +1,28 @@
 import React from 'react';
 import {Pressable, Text, View} from 'react-native';
+import PropTypes from 'prop-types';
+
 import style from './style';
+
 import dateFormat from 'dateformat';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
-const SessionItem = ({result, gameType, date, hours, minutes}) => {
+const SessionItem = ({result, gameType, date, hours, minutes, onPress}) => {
   return (
-    <Pressable style={style.border}>
+    <Pressable style={style.border} onPress={() => onPress()}>
       <View style={style.row}>
         <View>
-          <Text>{dateFormat(date, 'mm-dd-yyyy')}</Text>
+          <Text style={style.textBlack}>{dateFormat(date, 'mm-dd-yyyy')}</Text>
           <View style={style.row}>
-            <Text>{gameType} - </Text>
+            <Text style={style.textBlack}>{gameType} - </Text>
             {minutes < 10 && (
-              <Text>
+              <Text style={style.textBlack}>
                 {hours}:0{minutes}
               </Text>
             )}
             {minutes >= 10 && (
-              <Text>
+              <Text style={style.textBlack}>
                 {hours}:{minutes}
               </Text>
             )}
@@ -48,6 +51,14 @@ const SessionItem = ({result, gameType, date, hours, minutes}) => {
       </View>
     </Pressable>
   );
+};
+
+SessionItem.propTypes = {
+  // result: PropTypes.number.isRequired,
+  // gameType: PropTypes.string.isRequired,
+  // date: PropTypes.date.isRequired,
+  // hours: PropTypes.string.isRequired,
+  // minutes: PropTypes.string.isRequired,
 };
 
 export default SessionItem;

@@ -31,6 +31,9 @@ const style = StyleSheet.create({
   chevronColor: {
     color: '#1DA1F2',
   },
+  textBlack: {
+    color: 'black',
+  },
 });
 
 export default style;

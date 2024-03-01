@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView} from 'react-native';
+import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import globalStyle from '../../styles/globalStyle';
 import Header from '../../components/Header/Header';
 import SessionItem from '../../components/SessionItem/SessionItem';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {resetToInitialState} from '../../redux/reducers/Sessions';
+import {Routes} from '../../navigation/Routes';
+import style from './style';
 
 const Home = ({navigation}) => {
   const session = useSelector(state => state.session);
@@ -12,12 +15,16 @@ const Home = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const sessionPageSize = 10;
 
+  //const dispatch = useDispatch();
+
   useEffect(() => {
     setIsLoading(true);
-    setSessionList(pagination(session.sessions, sessionPage, sessionPageSize));
+    setSessionList(pagination(sessionList, sessionPage, sessionPageSize));
     setSessionPage(prev => prev + 1);
     setIsLoading(false);
   }, []);
+
+  //dispatch(resetToInitialState());
 
   const pagination = (items, pageNumber, pageSize) => {
     const startIndex = (pageNumber - 1) * pageSize;
@@ -31,8 +38,11 @@ const Home = ({navigation}) => {
     return items.slice(startIndex, endIndex);
   };
 
-  //if a new session is added to sessions setSessionList to sessions to trigger rerender
-  if (session.sessions[0].sessionId !== sessionList[0].sessionId) {
+  // if a new session is added to sessions setSessionList to sessions to trigger rerender
+  if (
+    session.sessions.length > 0 &&
+    session.sessions[0].sessionId !== sessionList[0].sessionId
+  ) {
     setSessionList(session.sessions);
   }
 
@@ -61,17 +71,32 @@ const Home = ({navigation}) => {
           }
           setIsLoading(false);
         }}
-        data={sessionList}
+        ListEmptyComponent={
+          <View style={style.alignCenter}>
+            <Text style={style.emptyText}>
+              {'Your sessions will appear here!'}
+            </Text>
+          </View>
+        }
+        //extraData={}
+        //filter out initial state that is assigned sessionId: 1
+        data={sessionList.filter(item => item.sessionId !== '1')}
         renderItem={({item}) => {
           return (
-            <SessionItem
-              key={item.sessionId}
-              result={item.result}
-              gameType={item.gameType}
-              date={item.date}
-              hours={item.hours}
-              minutes={item.minutes}
-            />
+            <View key={item.sessionId}>
+              <SessionItem
+                result={item.result}
+                gameType={item.gameType}
+                date={item.date}
+                hours={item.hours}
+                minutes={item.minutes}
+                sessionId={item.sessionId}
+                //pass the session item to UpdateSession via route
+                onPress={() =>
+                  navigation.navigate(Routes.UpdateSession, {...item})
+                }
+              />
+            </View>
           );
         }}
       />

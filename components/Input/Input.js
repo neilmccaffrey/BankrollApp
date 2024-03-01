@@ -4,8 +4,15 @@ import {Text, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import style from './style';
 
-const Input = ({label, placeholder, keyboardType, onChangeText}) => {
-  const [value, setValue] = useState('');
+const Input = ({
+  label,
+  placeholder,
+  keyboardType,
+  onChangeText,
+  initialValue,
+}) => {
+  //set initialValue if updating session, empty when creating
+  const [value, setValue] = useState(initialValue ? initialValue : '');
 
   return (
     <View style={style.inputContainer}>
