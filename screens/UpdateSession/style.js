@@ -55,6 +55,19 @@ const style = StyleSheet.create({
   backButtonText: {
     color: '#1DA1F2',
   },
+  delete: {
+    backgroundColor: '#FF0000',
+    borderRadius: horizontalScale(50),
+    justifyContent: 'center',
+    paddingHorizontal: horizontalScale(10),
+    marginBottom: verticalScale(20),
+  },
+  title: {
+    color: 'white',
+    fontSize: scaleFontSize(15),
+    textAlign: 'center',
+    padding: horizontalScale(5),
+  },
 });
 
 export default style;

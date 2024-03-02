@@ -32,16 +32,13 @@ export const Sessions = createSlice({
       const index = state.sessions.findIndex(
         session => session.sessionId === action.payload.sessionId,
       );
-
-      //new array
-      const newArray = [state.sessions];
-      //change value of index in new array
-      newArray[index] = action.payload;
-
-      return {
-        ...state,
-        sessions: newArray,
-      };
+      //update session
+      state.sessions[index] = action.payload;
+    },
+    deleteSession: (state, action) => {
+      state.sessions = state.sessions.filter(
+        session => session.sessionId !== action.payload,
+      );
     },
     resetToInitialState: () => {
       return initialState;
@@ -49,7 +46,7 @@ export const Sessions = createSlice({
   },
 });
 
-export const {addSession, updateSession, resetToInitialState} =
+export const {addSession, updateSession, deleteSession, resetToInitialState} =
   Sessions.actions;
 
 export default Sessions.reducer;

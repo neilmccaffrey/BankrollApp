@@ -10,41 +10,9 @@ import style from './style';
 
 const Home = ({navigation}) => {
   const session = useSelector(state => state.session);
-  const [sessionList, setSessionList] = useState(session.sessions);
-  const [sessionPage, setSessionPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const sessionPageSize = 10;
 
   //const dispatch = useDispatch();
-
-  useEffect(() => {
-    setIsLoading(true);
-    setSessionList(pagination(sessionList, sessionPage, sessionPageSize));
-    setSessionPage(prev => prev + 1);
-    setIsLoading(false);
-  }, []);
-
   //dispatch(resetToInitialState());
-
-  const pagination = (items, pageNumber, pageSize) => {
-    const startIndex = (pageNumber - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-
-    //return empty array if no more items in list
-    if (startIndex >= endIndex) {
-      return [];
-    }
-    //return items to render
-    return items.slice(startIndex, endIndex);
-  };
-
-  // if a new session is added to sessions setSessionList to sessions to trigger rerender
-  if (
-    session.sessions.length > 0 &&
-    session.sessions[0].sessionId !== sessionList[0].sessionId
-  ) {
-    setSessionList(session.sessions);
-  }
 
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
@@ -54,23 +22,6 @@ const Home = ({navigation}) => {
       <FlatList
         horizontal={false}
         showsVerticalScrollIndicator={false}
-        onEndReachedThreshold={0.5}
-        onEndReached={() => {
-          if (isLoading) {
-            return;
-          }
-          setIsLoading(true);
-          let newData = pagination(
-            session.sessions,
-            sessionPage,
-            sessionPageSize,
-          );
-          if (newData.length > 0) {
-            setSessionPage(prevState => prevState + 1);
-            setSessionList(prevState => [...prevState, ...newData]);
-          }
-          setIsLoading(false);
-        }}
         ListEmptyComponent={
           <View style={style.alignCenter}>
             <Text style={style.emptyText}>
@@ -78,25 +29,24 @@ const Home = ({navigation}) => {
             </Text>
           </View>
         }
-        //extraData={}
+        //extraData={session.sessions}
         //filter out initial state that is assigned sessionId: 1
-        data={sessionList.filter(item => item.sessionId !== '1')}
+        initialNumToRender={20}
+        data={session.sessions.filter(item => item.sessionId !== '1')}
         renderItem={({item}) => {
           return (
-            <View key={item.sessionId}>
-              <SessionItem
-                result={item.result}
-                gameType={item.gameType}
-                date={item.date}
-                hours={item.hours}
-                minutes={item.minutes}
-                sessionId={item.sessionId}
-                //pass the session item to UpdateSession via route
-                onPress={() =>
-                  navigation.navigate(Routes.UpdateSession, {...item})
-                }
-              />
-            </View>
+            <SessionItem
+              result={item.result}
+              gameType={item.gameType}
+              date={item.date}
+              hours={item.hours}
+              minutes={item.minutes}
+              sessionId={item.sessionId}
+              //pass the session item to UpdateSession via route
+              onPress={() =>
+                navigation.navigate(Routes.UpdateSession, {...item})
+              }
+            />
           );
         }}
       />
@@ -106,3 +56,51 @@ const Home = ({navigation}) => {
 };
 
 export default Home;
+
+// const [sessionList, setSessionList] = useState(session.sessions);
+// const [sessionPage, setSessionPage] = useState(1);
+// const [isLoading, setIsLoading] = useState(false);
+// const sessionPageSize = 10;
+
+// if (session.sessions !== sessionList) {
+//   setSessionList(session.sessions);
+// }
+
+// useEffect(() => {
+//   setIsLoading(true);
+//   setSessionList(pagination(session.sessions, sessionPage, sessionPageSize));
+//   setSessionPage(prev => prev + 1);
+//   setIsLoading(false);
+// }, []);
+
+//use pagination to only load 10 sessions at a time with onEndReached
+// const pagination = (items, pageNumber, pageSize) => {
+//   const startIndex = (pageNumber - 1) * pageSize;
+//   const endIndex = startIndex + pageSize;
+
+//   //return empty array if no more items in list
+//   if (startIndex >= endIndex) {
+//     return [];
+//   }
+//   //return items to render
+//   return items.slice(startIndex, endIndex);
+// };
+
+//*********Flatlist********** */
+// onEndReachedThreshold={0.5}
+// onEndReached={() => {
+//   if (isLoading) {
+//     return;
+//   }
+//   setIsLoading(true);
+//   let newData = pagination(
+//     session.sessions,
+//     sessionPage,
+//     sessionPageSize,
+//   );
+//   if (newData.length > 0) {
+//     setSessionPage(prevState => prevState + 1);
+//     setSessionList(prevState => [...prevState, ...newData]);
+//   }
+//   setIsLoading(false);
+// }}

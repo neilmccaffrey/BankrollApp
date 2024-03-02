@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Pressable, SafeAreaView, Text, View} from 'react-native';
+import {Alert, Pressable, SafeAreaView, Text, View} from 'react-native';
 import {Routes} from '../../navigation/Routes';
 
 import globalStyle from '../../styles/globalStyle';
@@ -11,7 +11,7 @@ import Button from '../../components/Button/Button';
 
 import {useDispatch} from 'react-redux';
 import {updateBankroll} from '../../redux/reducers/Bankroll';
-import {updateSession} from '../../redux/reducers/Sessions';
+import {deleteSession, updateSession} from '../../redux/reducers/Sessions';
 
 import DatePicker from 'react-native-date-picker';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -64,14 +64,36 @@ const UpdateSession = ({route, navigation}) => {
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <View style={style.container}>
         <View>
-          <Pressable
-            style={style.backButton}
-            onPress={() => navigation.goBack()}>
-            <FontAwesomeIcon
-              style={style.backButtonText}
-              icon={faChevronLeft}
-            />
-          </Pressable>
+          <View style={style.pressablesContainer}>
+            <Pressable
+              style={style.backButton}
+              onPress={() => navigation.goBack()}>
+              <FontAwesomeIcon
+                style={style.backButtonText}
+                icon={faChevronLeft}
+              />
+            </Pressable>
+            <Pressable
+              style={style.delete}
+              onPress={() => {
+                Alert.alert('DELETE', 'Are you sure you want to delete?', [
+                  {
+                    text: 'OK',
+                    onPress: () => {
+                      dispatch(deleteSession(route.params.sessionId));
+                      dispatch(updateBankroll(buyIn - cashOut));
+                      navigation.navigate(Routes.Home);
+                    },
+                  },
+                  {
+                    text: 'Cancel',
+                    style: 'cancel',
+                  },
+                ]);
+              }}>
+              <Text style={style.title}>Delete</Text>
+            </Pressable>
+          </View>
           <View style={style.dropdownContainer}>
             <Text style={style.textColor}>Select game type:</Text>
             <View style={style.dropdown}>

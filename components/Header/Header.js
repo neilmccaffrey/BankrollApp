@@ -3,9 +3,12 @@ import Button from '../Button/Button';
 import {Text, View} from 'react-native';
 import style from './style';
 import {Routes} from '../../navigation/Routes';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {resetToInitialState} from '../../redux/reducers/Bankroll';
 
 const Header = ({navigation}) => {
+  // const dispatch = useDispatch();
+  // dispatch(resetToInitialState());
   //get bankroll amount
   const bankrollAmount = useSelector(state => state.bankroll.bankrollAmount);
   return (
