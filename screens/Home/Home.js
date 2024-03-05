@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {resetToInitialState} from '../../redux/reducers/Sessions';
 import {Routes} from '../../navigation/Routes';
 import style from './style';
+import Footer from '../../components/Footer/Footer';
 
 const Home = ({navigation}) => {
   const session = useSelector(state => state.session);
@@ -50,7 +51,8 @@ const Home = ({navigation}) => {
           );
         }}
       />
-      <Header />
+      {/* must pass navigation as prop to be used by button */}
+      <Footer navigation={navigation} />
     </SafeAreaView>
   );
 };

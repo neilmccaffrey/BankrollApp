@@ -54,11 +54,9 @@ const SessionItem = ({result, gameType, date, hours, minutes, onPress}) => {
 };
 
 SessionItem.propTypes = {
-  // result: PropTypes.number.isRequired,
-  // gameType: PropTypes.string.isRequired,
-  // date: PropTypes.date.isRequired,
-  // hours: PropTypes.string.isRequired,
-  // minutes: PropTypes.string.isRequired,
+  onPress: PropTypes.func,
+  result: PropTypes.number.isRequired,
+  gameType: PropTypes.string.isRequired,
 };
 
 export default SessionItem;

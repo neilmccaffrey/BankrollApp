@@ -4,6 +4,7 @@ import {Routes} from './Routes';
 import Home from '../screens/Home/Home';
 import Session from '../screens/Session/Session';
 import UpdateSession from '../screens/UpdateSession/UpdateSession';
+import Stats from '../screens/Stats/Stats';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const MainNavigation = () => {
       <Stack.Screen name={Routes.Home} component={Home} />
       <Stack.Screen name={Routes.Session} component={Session} />
       <Stack.Screen name={Routes.UpdateSession} component={UpdateSession} />
+      <Stack.Screen name={Routes.Stats} component={Stats} />
     </Stack.Navigator>
   );
 };

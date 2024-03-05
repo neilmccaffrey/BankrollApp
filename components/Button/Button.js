@@ -27,6 +27,7 @@ Button.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func,
   isDisabled: PropTypes.bool,
+  biggerButton: PropTypes.bool,
 };
 
 export default Button;
