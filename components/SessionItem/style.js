@@ -1,11 +1,12 @@
 import {StyleSheet} from 'react-native';
-import {horizontalScale} from '../../styles/scaling';
+import {horizontalScale, scaleFontSize} from '../../styles/scaling';
 
 const style = StyleSheet.create({
   border: {
     borderBottomWidth: 1,
     borderBottomColor: '#EFF2F6',
     padding: horizontalScale(10),
+    backgroundColor: 'white',
   },
   row: {
     flexDirection: 'row',
@@ -15,7 +16,6 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   result: {
-    justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -33,6 +33,7 @@ const style = StyleSheet.create({
   },
   textBlack: {
     color: 'black',
+    fontSize: scaleFontSize(12),
   },
 });
 

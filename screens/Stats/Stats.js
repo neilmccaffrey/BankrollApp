@@ -293,12 +293,12 @@ const Stats = ({navigation}) => {
                 -${(hourlyRateTournament * -1).toFixed(2)}
               </Text>
             )}
-            {hourlyRateCash > 0 && (
+            {hourlyRateTournament > 0 && (
               <Text style={style.textPos}>
                 ${hourlyRateTournament.toFixed(2)}
               </Text>
             )}
-            {hourlyRateCash === 0 && (
+            {hourlyRateTournament === 0 && (
               <Text style={style.text}>${hourlyRateTournament.toFixed(2)}</Text>
             )}
           </View>
@@ -308,7 +308,7 @@ const Stats = ({navigation}) => {
 
         <View style={style.row}>
           <Text style={style.text}>Win Rate:</Text>
-          {sessions.sessions.length > 1 && (
+          {winRateDenom > 0 && (
             <Text style={style.text}>
               {count}/{winRateDenom} ({Math.round((count / winRateDenom) * 100)}
               %)

@@ -5,10 +5,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Bankroll from './reducers/Bankroll';
 import Sessions from './reducers/Sessions';
+import Stakes from './reducers/Stakes';
+import Games from './reducers/Games';
 
 const rootReducer = combineReducers({
   bankroll: Bankroll,
   session: Sessions,
+  stakes: Stakes,
+  games: Games,
 });
 
 const configuration = {

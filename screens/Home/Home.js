@@ -1,27 +1,78 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {
+  Alert,
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import globalStyle from '../../styles/globalStyle';
 import Header from '../../components/Header/Header';
 import SessionItem from '../../components/SessionItem/SessionItem';
 import {useDispatch, useSelector} from 'react-redux';
-import {resetToInitialState} from '../../redux/reducers/Sessions';
+import {
+  deleteSession,
+  resetToInitialState,
+} from '../../redux/reducers/Sessions';
 import {Routes} from '../../navigation/Routes';
 import style from './style';
 import Footer from '../../components/Footer/Footer';
+import {SwipeListView} from 'react-native-swipe-list-view';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
+import {updateBankroll} from '../../redux/reducers/Bankroll';
 
 const Home = ({navigation}) => {
   const session = useSelector(state => state.session);
+  //filter out initial state that is assigned sessionId: 1
+  const [data, setData] = useState(
+    session.sessions.filter(item => item.sessionId !== '1'),
+  );
 
-  //const dispatch = useDispatch();
+  //render after deletion
+  useEffect(() => {
+    setData(session.sessions.filter(item => item.sessionId !== '1'));
+  }, [session.sessions]);
+
+  const dispatch = useDispatch();
   //dispatch(resetToInitialState());
+
+  const renderHiddenItem = renData => (
+    <View style={style.hidden}>
+      <TouchableOpacity
+        style={style.backRightButton}
+        onPress={() => {
+          Alert.alert('DELETE', 'Are you sure you want to delete?', [
+            {
+              text: 'OK',
+              onPress: () => {
+                dispatch(deleteSession(renData.item.sessionId));
+                dispatch(
+                  updateBankroll(renData.item.buyIn - renData.item.cashOut),
+                );
+              },
+            },
+            {
+              text: 'Cancel',
+              style: 'cancel',
+            },
+          ]);
+        }}>
+        <FontAwesomeIcon icon={faTrashCan} color={'white'} size={20} />
+        <Text style={style.textColor}>Delete</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       {/* must pass navigation as prop to be used by button */}
       <Header navigation={navigation} />
       {/* iterate through sessions array to display on homepage */}
-      <FlatList
-        horizontal={false}
+      <SwipeListView
+        useFlatList={true}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <View style={style.alignCenter}>
@@ -30,10 +81,8 @@ const Home = ({navigation}) => {
             </Text>
           </View>
         }
-        //extraData={session.sessions}
-        //filter out initial state that is assigned sessionId: 1
         initialNumToRender={20}
-        data={session.sessions.filter(item => item.sessionId !== '1')}
+        data={data}
         renderItem={({item}) => {
           return (
             <SessionItem
@@ -43,6 +92,8 @@ const Home = ({navigation}) => {
               hours={item.hours}
               minutes={item.minutes}
               sessionId={item.sessionId}
+              stake={item.stake}
+              game={item.game}
               //pass the session item to UpdateSession via route
               onPress={() =>
                 navigation.navigate(Routes.UpdateSession, {...item})
@@ -50,6 +101,10 @@ const Home = ({navigation}) => {
             />
           );
         }}
+        renderHiddenItem={renderHiddenItem}
+        keyExtractor={item => item.sessionId}
+        //leftOpenValue={75}
+        rightOpenValue={-75}
       />
       {/* must pass navigation as prop to be used by button */}
       <Footer navigation={navigation} />

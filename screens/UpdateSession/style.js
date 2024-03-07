@@ -68,6 +68,63 @@ const style = StyleSheet.create({
     textAlign: 'center',
     padding: horizontalScale(5),
   },
+  containerModal: {
+    flex: 1,
+    marginTop: verticalScale(28),
+    marginHorizontal: horizontalScale(24),
+  },
+  chevron: {
+    marginLeft: horizontalScale(10),
+  },
+  chevronColor: {
+    color: '#1DA1F2',
+  },
+  stakesContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: horizontalScale(10),
+    borderBottomWidth: 1,
+    borderBottomColor: '#EFF2F6',
+    backgroundColor: 'white',
+  },
+  buttonsModal: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: verticalScale(20),
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#1DA1F2',
+    paddingVertical: verticalScale(4),
+    paddingLeft: horizontalScale(8),
+    width: horizontalScale(80),
+    borderRadius: 30,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+  },
+  hidden: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingLeft: 15,
+  },
+  backRightButton: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75,
+    backgroundColor: '#FF0000',
+    right: 0,
+  },
+  textColorTrash: {
+    color: 'white',
+  },
 });
 
 export default style;

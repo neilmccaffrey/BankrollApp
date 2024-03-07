@@ -8,13 +8,26 @@ import dateFormat from 'dateformat';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
-const SessionItem = ({result, gameType, date, hours, minutes, onPress}) => {
+const SessionItem = ({
+  result,
+  gameType,
+  date,
+  hours,
+  minutes,
+  stake,
+  game,
+  onPress,
+}) => {
   return (
     <Pressable style={style.border} onPress={() => onPress()}>
       <View style={style.row}>
         <View>
-          <Text style={style.textBlack}>{dateFormat(date, 'mm-dd-yyyy')}</Text>
-          <View style={style.row}>
+          <View style={style.rowResult}>
+            <Text style={style.textBlack}>
+              {dateFormat(date, 'ddd mm-dd-yyyy')}
+            </Text>
+          </View>
+          <View style={style.rowResult}>
             <Text style={style.textBlack}>{gameType} - </Text>
             {minutes < 10 && (
               <Text style={style.textBlack}>
@@ -26,6 +39,10 @@ const SessionItem = ({result, gameType, date, hours, minutes, onPress}) => {
                 {hours}:{minutes}
               </Text>
             )}
+          </View>
+          <View style={style.rowResult}>
+            {stake && <Text style={style.textBlack}>{stake} - </Text>}
+            <Text style={style.textBlack}>{game} </Text>
           </View>
         </View>
         <View style={style.rowResult}>

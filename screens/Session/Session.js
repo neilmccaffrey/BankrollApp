@@ -1,5 +1,14 @@
 import React, {useState} from 'react';
-import {Pressable, SafeAreaView, Text, View} from 'react-native';
+import {
+  Alert,
+  Modal,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Routes} from '../../navigation/Routes';
 
 import globalStyle from '../../styles/globalStyle';
@@ -9,23 +18,37 @@ import {Dropdown} from 'react-native-element-dropdown';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {updateBankroll} from '../../redux/reducers/Bankroll';
 import {addSession} from '../../redux/reducers/Sessions';
 
 import uuid from 'react-native-uuid';
 import DatePicker from 'react-native-date-picker';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {faChevronRight, faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import {addStake, deleteStake} from '../../redux/reducers/Stakes';
+import {addGame, deleteGame} from '../../redux/reducers/Games';
+import {SwipeListView} from 'react-native-swipe-list-view';
 
 const Session = ({navigation}) => {
+  const sessions = useSelector(state => state.session);
+  const stakes = useSelector(state => state.stakes);
+  const games = useSelector(state => state.games);
   const [value, setValue] = useState('Cash game');
   const [buyIn, setBuyIn] = useState('');
   const [cashOut, setCashOut] = useState('');
   const [hours, setHours] = useState('8');
   const [minutes, setMinutes] = useState('0');
+  const [modalVisible, setModalVisible] = useState(false);
+  //set the initial state to the last stake used
+  const [stake, setStake] = useState(sessions.sessions[0].stake);
+  const [customStake, setCustomStake] = useState('');
+  const [modalGameVisible, setModalGameVisible] = useState(false);
+  const [customGame, setCustomGame] = useState('');
+  const [game, setGame] = useState(sessions.sessions[0].game);
+
   const dispatch = useDispatch();
 
   //date picker
@@ -95,9 +118,11 @@ const Session = ({navigation}) => {
               <Text style={style.textColor}>{'Select date '}</Text>
               <FontAwesomeIcon icon={faChevronRight} size={12} />
             </Pressable>
-            <Text style={[style.textColor, style.dateSize]}>
-              {date.toDateString()}
-            </Text>
+            <Pressable onPress={() => setOpen(true)}>
+              <Text style={[style.textColor, style.dateSize]}>
+                {date.toDateString()}
+              </Text>
+            </Pressable>
             <DatePicker
               modal
               open={open}
@@ -119,11 +144,13 @@ const Session = ({navigation}) => {
               <Text style={style.textColor}>{'Duration      '}</Text>
               <FontAwesomeIcon icon={faChevronRight} size={12} />
             </Pressable>
-            <Text style={[style.textColor, style.dateSize]}>
-              {minutes < 10
-                ? `${hours} : 0${minutes}`
-                : `${hours} : ${minutes}`}
-            </Text>
+            <Pressable onPress={() => setOpenDuration(true)}>
+              <Text style={[style.textColor, style.dateSize]}>
+                {minutes < 10
+                  ? `${hours} : 0${minutes}`
+                  : `${hours} : ${minutes}`}
+              </Text>
+            </Pressable>
             <DateTimePickerModal
               isVisible={openDuration}
               mode={'time'}
@@ -133,15 +160,32 @@ const Session = ({navigation}) => {
               locale={'en_GB'}
             />
           </View>
+
+          <View style={style.pressablesContainer}>
+            <Pressable
+              style={style.press}
+              onPress={() => setModalGameVisible(true)}>
+              <Text style={style.textColor}>{'Game           '}</Text>
+              <FontAwesomeIcon icon={faChevronRight} size={12} />
+            </Pressable>
+            <Pressable onPress={() => setModalGameVisible(true)}>
+              <Text style={[style.textColor, style.dateSize]}>{game}</Text>
+            </Pressable>
+          </View>
           {value === 'Cash game' && (
             <View style={style.pressablesContainer}>
-              <Pressable style={style.press}>
+              <Pressable
+                style={style.press}
+                onPress={() => setModalVisible(true)}>
                 <Text style={style.textColor}>{'Stake           '}</Text>
                 <FontAwesomeIcon icon={faChevronRight} size={12} />
               </Pressable>
-              <Text style={[style.textColor, style.dateSize]}>{'2/5'}</Text>
+              <Pressable onPress={() => setModalVisible(true)}>
+                <Text style={[style.textColor, style.dateSize]}>{stake}</Text>
+              </Pressable>
             </View>
           )}
+
           <View>
             <Input
               keyboardType={'number-pad'}
@@ -154,7 +198,7 @@ const Session = ({navigation}) => {
             <Input
               keyboardType={'number-pad'}
               placeholder={'$0'}
-              label={'Cash out:'}
+              label={'Cash-out:'}
               onChangeText={val => setCashOut(val)}
             />
           </View>
@@ -177,6 +221,8 @@ const Session = ({navigation}) => {
                   minutes: minutes,
                   buyIn: buyIn,
                   cashOut: cashOut,
+                  stake: stake,
+                  game: game,
                 }),
               );
               navigation.navigate(Routes.Home);
@@ -184,6 +230,181 @@ const Session = ({navigation}) => {
             biggerButton={true}
           />
         </View>
+
+        {/* Modal for stakes */}
+        <Modal
+          visible={modalVisible}
+          onRequestClose={() => setModalVisible(!modalVisible)}>
+          <View style={style.containerModal}>
+            <View style={style.buttonsModal}>
+              <Pressable onPress={() => setModalVisible(!modalVisible)}>
+                <FontAwesomeIcon
+                  style={style.backButtonText}
+                  icon={faChevronLeft}
+                />
+              </Pressable>
+              <View style={style.inputContainer}>
+                <TextInput
+                  style={style.input}
+                  value={customStake}
+                  placeholder={'custom'}
+                  onChangeText={val => setCustomStake(val)}
+                />
+                <Button
+                  title={'+ Add Stake'}
+                  isDisabled={false}
+                  onPress={() => {
+                    dispatch(addStake(customStake));
+                    setCustomStake('');
+                  }}
+                />
+              </View>
+            </View>
+            <SwipeListView
+              useFlatList={true}
+              data={stakes}
+              renderItem={({item}) => {
+                return (
+                  <Pressable
+                    style={style.stakesContainer}
+                    onPress={() => {
+                      setStake(item);
+                      setModalVisible(!modalVisible);
+                    }}>
+                    <Text style={style.textColor}>{item}</Text>
+                    <View style={style.chevron}>
+                      <FontAwesomeIcon
+                        style={style.chevronColor}
+                        icon={faChevronRight}
+                        size={12}
+                      />
+                    </View>
+                  </Pressable>
+                );
+              }}
+              keyExtractor={index => index.toString()}
+              renderHiddenItem={item => (
+                <View style={style.hidden}>
+                  <TouchableOpacity
+                    style={style.backRightButton}
+                    onPress={() => {
+                      Alert.alert(
+                        'DELETE',
+                        'Are you sure you want to delete?',
+                        [
+                          {
+                            text: 'OK',
+                            onPress: () => {
+                              dispatch(deleteStake(item.item));
+                            },
+                          },
+                          {
+                            text: 'Cancel',
+                            style: 'cancel',
+                          },
+                        ],
+                      );
+                    }}>
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      color={'white'}
+                      size={20}
+                    />
+                    <Text style={style.textColorTrash}>Delete</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              rightOpenValue={-75}
+            />
+          </View>
+        </Modal>
+        {/* Modal for game */}
+        <Modal
+          visible={modalGameVisible}
+          onRequestClose={() => setModalGameVisible(!modalGameVisible)}>
+          <View style={style.containerModal}>
+            <View style={style.buttonsModal}>
+              <Pressable onPress={() => setModalGameVisible(!modalGameVisible)}>
+                <FontAwesomeIcon
+                  style={style.backButtonText}
+                  icon={faChevronLeft}
+                />
+              </Pressable>
+              <View style={style.inputContainer}>
+                <TextInput
+                  style={style.input}
+                  value={customGame}
+                  placeholder={'custom'}
+                  onChangeText={val => setCustomGame(val)}
+                />
+                <Button
+                  title={'+ Add Game'}
+                  isDisabled={false}
+                  onPress={() => {
+                    dispatch(addGame(customGame));
+                    setCustomGame('');
+                  }}
+                />
+              </View>
+            </View>
+            <SwipeListView
+              useFlatList={true}
+              data={games}
+              renderItem={({item}) => {
+                return (
+                  <Pressable
+                    style={style.stakesContainer}
+                    onPress={() => {
+                      setGame(item);
+                      setModalGameVisible(!modalGameVisible);
+                    }}>
+                    <Text style={style.textColor}>{item}</Text>
+                    <View style={style.chevron}>
+                      <FontAwesomeIcon
+                        style={style.chevronColor}
+                        icon={faChevronRight}
+                        size={12}
+                      />
+                    </View>
+                  </Pressable>
+                );
+              }}
+              keyExtractor={index => index.toString()}
+              renderHiddenItem={item => (
+                <View style={style.hidden}>
+                  <TouchableOpacity
+                    style={style.backRightButton}
+                    onPress={() => {
+                      Alert.alert(
+                        'DELETE',
+                        'Are you sure you want to delete?',
+                        [
+                          {
+                            text: 'OK',
+                            onPress: () => {
+                              dispatch(deleteGame(item.item));
+                            },
+                          },
+                          {
+                            text: 'Cancel',
+                            style: 'cancel',
+                          },
+                        ],
+                      );
+                    }}>
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      color={'white'}
+                      size={20}
+                    />
+                    <Text style={style.textColorTrash}>Delete</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              rightOpenValue={-75}
+            />
+          </View>
+        </Modal>
       </View>
     </SafeAreaView>
   );
