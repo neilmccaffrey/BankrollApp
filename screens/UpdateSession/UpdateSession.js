@@ -31,10 +31,12 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {addStake, deleteStake} from '../../redux/reducers/Stakes';
 import {addGame, deleteGame} from '../../redux/reducers/Games';
 import {SwipeListView} from 'react-native-swipe-list-view';
+import {addLocation, deleteLocation} from '../../redux/reducers/Locations';
 
 const UpdateSession = ({route, navigation}) => {
   const stakes = useSelector(state => state.stakes);
   const games = useSelector(state => state.games);
+  const locations = useSelector(state => state.locations);
   const [value, setValue] = useState(route.params.gameType);
   const [buyIn, setBuyIn] = useState(route.params.buyIn);
   const [cashOut, setCashOut] = useState(route.params.cashOut);
@@ -46,6 +48,10 @@ const UpdateSession = ({route, navigation}) => {
   const [modalGameVisible, setModalGameVisible] = useState(false);
   const [customGame, setCustomGame] = useState('');
   const [game, setGame] = useState(route.params.game);
+  const [location, setLocation] = useState(route.params.location);
+  const [customLocation, setCustomLocation] = useState('');
+  const [modalLocationVisible, setModalLocationVisible] = useState(false);
+
   const dispatch = useDispatch();
 
   //date picker
@@ -133,7 +139,7 @@ const UpdateSession = ({route, navigation}) => {
           </View>
           <View style={style.pressablesContainer}>
             <Pressable style={style.press} onPress={() => setOpen(true)}>
-              <Text style={style.textColor}>{'Select date '}</Text>
+              <Text style={style.textColor}>{'Date'}</Text>
               <FontAwesomeIcon icon={faChevronRight} size={12} />
             </Pressable>
             <Pressable onPress={() => setOpen(true)}>
@@ -159,7 +165,7 @@ const UpdateSession = ({route, navigation}) => {
             <Pressable
               style={style.press}
               onPress={() => setOpenDuration(true)}>
-              <Text style={style.textColor}>{'Duration      '}</Text>
+              <Text style={style.textColor}>{'Duration'}</Text>
               <FontAwesomeIcon icon={faChevronRight} size={12} />
             </Pressable>
             <Pressable onPress={() => setOpenDuration(true)}>
@@ -182,19 +188,32 @@ const UpdateSession = ({route, navigation}) => {
             <Pressable
               style={style.press}
               onPress={() => setModalGameVisible(true)}>
-              <Text style={style.textColor}>{'Game           '}</Text>
+              <Text style={style.textColor}>{'Game'}</Text>
               <FontAwesomeIcon icon={faChevronRight} size={12} />
             </Pressable>
             <Pressable onPress={() => setModalGameVisible(true)}>
               <Text style={[style.textColor, style.dateSize]}>{game}</Text>
             </Pressable>
           </View>
+
+          <View style={style.pressablesContainer}>
+            <Pressable
+              style={style.press}
+              onPress={() => setModalLocationVisible(true)}>
+              <Text style={style.textColor}>{'Location'}</Text>
+              <FontAwesomeIcon icon={faChevronRight} size={12} />
+            </Pressable>
+            <Pressable onPress={() => setModalLocationVisible(true)}>
+              <Text style={[style.textColor, style.dateSize]}>{location}</Text>
+            </Pressable>
+          </View>
+
           {value === 'Cash game' && (
             <View style={style.pressablesContainer}>
               <Pressable
                 style={style.press}
                 onPress={() => setModalVisible(true)}>
-                <Text style={style.textColor}>{'Stake           '}</Text>
+                <Text style={style.textColor}>{'Stake'}</Text>
                 <FontAwesomeIcon icon={faChevronRight} size={12} />
               </Pressable>
               <Pressable onPress={() => setModalVisible(true)}>
@@ -399,6 +418,95 @@ const UpdateSession = ({route, navigation}) => {
                             text: 'OK',
                             onPress: () => {
                               dispatch(deleteGame(item.item));
+                            },
+                          },
+                          {
+                            text: 'Cancel',
+                            style: 'cancel',
+                          },
+                        ],
+                      );
+                    }}>
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      color={'white'}
+                      size={20}
+                    />
+                    <Text style={style.textColorTrash}>Delete</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+              rightOpenValue={-75}
+            />
+          </View>
+        </Modal>
+
+        {/* Modal for location */}
+        <Modal
+          visible={modalLocationVisible}
+          onRequestClose={() => setModalLocationVisible(!modalLocationVisible)}>
+          <View style={style.containerModal}>
+            <View style={style.buttonsModal}>
+              <Pressable
+                onPress={() => setModalLocationVisible(!modalLocationVisible)}>
+                <FontAwesomeIcon
+                  style={style.backButtonText}
+                  icon={faChevronLeft}
+                />
+              </Pressable>
+              <View style={style.inputContainer}>
+                <TextInput
+                  style={style.input}
+                  value={customLocation}
+                  placeholder={'location'}
+                  onChangeText={val => setCustomLocation(val)}
+                />
+                <Button
+                  title={'+ Add Location'}
+                  isDisabled={false}
+                  onPress={() => {
+                    dispatch(addLocation(customLocation));
+                    setCustomLocation('');
+                  }}
+                />
+              </View>
+            </View>
+            <SwipeListView
+              useFlatList={true}
+              data={locations}
+              renderItem={({item}) => {
+                return (
+                  <Pressable
+                    style={style.stakesContainer}
+                    onPress={() => {
+                      setLocation(item);
+                      setModalLocationVisible(!modalLocationVisible);
+                    }}>
+                    <Text style={style.textColor}>{item}</Text>
+                    <View style={style.chevron}>
+                      <FontAwesomeIcon
+                        style={style.chevronColor}
+                        icon={faChevronRight}
+                        size={12}
+                      />
+                    </View>
+                  </Pressable>
+                );
+              }}
+              keyExtractor={index => index.toString()}
+              renderHiddenItem={item => (
+                <View style={style.hidden}>
+                  <TouchableOpacity
+                    style={style.backRightButton}
+                    onPress={() => {
+                      Alert.alert(
+                        'DELETE',
+                        'Are you sure you want to delete?',
+                        [
+                          {
+                            text: 'OK',
+                            onPress: () => {
+                              dispatch(deleteLocation(item.item));
                             },
                           },
                           {

@@ -14,6 +14,14 @@ const Input = ({
   //set initialValue if updating session, empty when creating
   const [value, setValue] = useState(initialValue ? initialValue : '');
 
+  const handleOnChangeValue = val => {
+    const numRegex = /^[0-9]*$/;
+    if (numRegex.test(val) || val === '') {
+      setValue(val);
+      onChangeText(val);
+    }
+  };
+
   return (
     <View style={style.inputContainer}>
       <Text style={style.label}>{label}</Text>
@@ -23,13 +31,9 @@ const Input = ({
         value={value}
         keyboardType={keyboardType}
         onChangeText={val => {
-          setValue(val);
-          onChangeText(val);
+          handleOnChangeValue(val);
         }}
       />
-      {value.includes('.') && (
-        <Text style={style.error}>Only enter numbers</Text>
-      )}
     </View>
   );
 };

@@ -16,10 +16,11 @@ const style = StyleSheet.create({
     color: 'black',
   },
   button: {
-    marginLeft: horizontalScale(220),
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     marginBottom: verticalScale(5),
-    width: horizontalScale(100),
     marginTop: verticalScale(20),
+    marginHorizontal: horizontalScale(10),
   },
   bankrollPositiveColor: {
     fontSize: scaleFontSize(18),
@@ -34,6 +35,30 @@ const style = StyleSheet.create({
   bankrollContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  centerView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+  modalView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: horizontalScale(10),
+    marginBottom: verticalScale(250),
+    marginTop: verticalScale(100),
+    height: '25%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
 

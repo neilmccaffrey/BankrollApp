@@ -10,21 +10,24 @@ const style = StyleSheet.create({
     backgroundColor: '#1DA1F2',
     borderRadius: horizontalScale(50),
     justifyContent: 'center',
+    width: horizontalScale(100),
   },
   title: {
     color: 'white',
     fontSize: scaleFontSize(15),
     textAlign: 'center',
-    padding: horizontalScale(5),
+    paddingVertical: verticalScale(5),
   },
   disabled: {
     opacity: 0.5,
   },
   biggerButton: {
+    alignItems: 'center',
     backgroundColor: '#1DA1F2',
     borderRadius: horizontalScale(50),
     justifyContent: 'center',
-    padding: horizontalScale(12),
+    paddingVertical: verticalScale(12),
+    width: horizontalScale(300),
   },
 });
 

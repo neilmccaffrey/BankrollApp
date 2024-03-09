@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Alert,
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import globalStyle from '../../styles/globalStyle';
 import Header from '../../components/Header/Header';
 import SessionItem from '../../components/SessionItem/SessionItem';
@@ -94,6 +86,7 @@ const Home = ({navigation}) => {
               sessionId={item.sessionId}
               stake={item.stake}
               game={item.game}
+              location={item.location}
               //pass the session item to UpdateSession via route
               onPress={() =>
                 navigation.navigate(Routes.UpdateSession, {...item})

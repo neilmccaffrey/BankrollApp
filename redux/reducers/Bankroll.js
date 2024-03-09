@@ -9,6 +9,12 @@ export const Bankroll = createSlice({
   initialState: initialState,
 
   reducers: {
+    bankrollWithdrawal: (state, action) => {
+      state.bankrollAmount -= action.payload;
+    },
+    bankrollDeposit: (state, action) => {
+      state.bankrollAmount += action.payload;
+    },
     updateBankroll: (state, action) => {
       state.bankrollAmount += action.payload;
     },
@@ -18,6 +24,11 @@ export const Bankroll = createSlice({
   },
 });
 
-export const {updateBankroll, resetToInitialState} = Bankroll.actions;
+export const {
+  updateBankroll,
+  bankrollDeposit,
+  bankrollWithdrawal,
+  resetToInitialState,
+} = Bankroll.actions;
 
 export default Bankroll.reducer;

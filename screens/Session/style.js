@@ -7,7 +7,7 @@ import {
 
 const style = StyleSheet.create({
   container: {
-    marginHorizontal: horizontalScale(24),
+    marginHorizontal: horizontalScale(16),
     flex: 1,
     marginTop: verticalScale(20),
     justifyContent: 'space-between',
@@ -23,7 +23,7 @@ const style = StyleSheet.create({
   },
   button: {
     marginBottom: verticalScale(15),
-    width: '100%',
+    alignItems: 'center',
   },
   dropdownContainer: {
     flexDirection: 'row',
@@ -45,6 +45,8 @@ const style = StyleSheet.create({
     borderRadius: 30,
     padding: horizontalScale(5),
     alignItems: 'center',
+    width: 105,
+    justifyContent: 'space-between',
   },
   dateSize: {
     fontSize: scaleFontSize(20),

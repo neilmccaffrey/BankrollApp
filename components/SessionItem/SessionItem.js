@@ -16,6 +16,7 @@ const SessionItem = ({
   minutes,
   stake,
   game,
+  location,
   onPress,
 }) => {
   return (
@@ -24,8 +25,9 @@ const SessionItem = ({
         <View>
           <View style={style.rowResult}>
             <Text style={style.textBlack}>
-              {dateFormat(date, 'ddd mm-dd-yyyy')}
+              {dateFormat(date, 'ddd mm-dd-yyyy')} -{' '}
             </Text>
+            <Text style={style.textBlack}>{location}</Text>
           </View>
           <View style={style.rowResult}>
             <Text style={style.textBlack}>{gameType} - </Text>

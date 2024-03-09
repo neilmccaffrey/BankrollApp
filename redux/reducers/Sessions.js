@@ -11,6 +11,9 @@ const initialState = {
       minutes: '',
       buyIn: '',
       cashOut: '',
+      stake: '',
+      game: '',
+      location: '',
     },
   ],
 };

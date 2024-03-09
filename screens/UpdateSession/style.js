@@ -45,6 +45,8 @@ const style = StyleSheet.create({
     borderRadius: 30,
     padding: horizontalScale(5),
     alignItems: 'center',
+    width: 105,
+    justifyContent: 'space-between',
   },
   dateSize: {
     fontSize: scaleFontSize(20),

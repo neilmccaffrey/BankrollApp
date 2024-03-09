@@ -7,12 +7,14 @@ import Bankroll from './reducers/Bankroll';
 import Sessions from './reducers/Sessions';
 import Stakes from './reducers/Stakes';
 import Games from './reducers/Games';
+import Locations from './reducers/Locations';
 
 const rootReducer = combineReducers({
   bankroll: Bankroll,
   session: Sessions,
   stakes: Stakes,
   games: Games,
+  locations: Locations,
 });
 
 const configuration = {
