@@ -15,6 +15,7 @@ const SessionItem = ({
   hours,
   minutes,
   stake,
+  buyIn,
   game,
   location,
   onPress,
@@ -44,6 +45,9 @@ const SessionItem = ({
           </View>
           <View style={style.rowResult}>
             {stake && <Text style={style.textBlack}>{stake} - </Text>}
+            {gameType === 'Tournament' && (
+              <Text style={style.textBlack}>${buyIn} - </Text>
+            )}
             <Text style={style.textBlack}>{game} </Text>
           </View>
         </View>

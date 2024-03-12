@@ -87,6 +87,7 @@ const Home = ({navigation}) => {
               stake={item.stake}
               game={item.game}
               location={item.location}
+              buyIn={item.buyIn}
               //pass the session item to UpdateSession via route
               onPress={() =>
                 navigation.navigate(Routes.UpdateSession, {...item})

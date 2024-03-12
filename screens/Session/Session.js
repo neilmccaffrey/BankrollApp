@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Modal,
@@ -57,6 +57,13 @@ const Session = ({navigation}) => {
   const [location, setLocation] = useState(sessions.sessions[0].location);
   const [customLocation, setCustomLocation] = useState('');
   const [modalLocationVisible, setModalLocationVisible] = useState(false);
+
+  //set stake to empty string if not cash game
+  useEffect(() => {
+    if (value === 'Tournament') {
+      setStake('');
+    }
+  }, [stake, value]);
 
   const dispatch = useDispatch();
   //dispatch(resetToInitialState());
