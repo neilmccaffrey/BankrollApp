@@ -91,6 +91,18 @@ const style = StyleSheet.create({
     marginTop: verticalScale(28),
     marginHorizontal: horizontalScale(24),
   },
+  container: {
+    marginTop: verticalScale(5),
+  },
+  justify: {
+    justifyContent: 'space-between',
+  },
+  clearButton: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: verticalScale(5),
+    marginRight: horizontalScale(5),
+  },
 });
 
 export default style;
