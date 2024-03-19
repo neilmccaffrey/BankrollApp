@@ -24,6 +24,7 @@ const style = StyleSheet.create({
   },
   label: {
     marginLeft: horizontalScale(10),
+    color: 'black',
   },
 });
 

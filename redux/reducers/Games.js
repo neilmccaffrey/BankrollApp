@@ -20,11 +20,11 @@ const Games = createSlice({
     addGame: (state, action) => {
       return [...state, action.payload];
     },
-    resetToInitialState: () => {
+    resetToInitialStateGames: () => {
       return initialState;
     },
   },
 });
 
-export const {addGame, deleteGame, resetToInitialState} = Games.actions;
+export const {addGame, deleteGame, resetToInitialStateGames} = Games.actions;
 export default Games.reducer;

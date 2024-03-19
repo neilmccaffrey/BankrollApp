@@ -13,11 +13,12 @@ const Stakes = createSlice({
     addStake: (state, action) => {
       return [...state, action.payload];
     },
-    resetToInitialState: () => {
+    resetToInitialStateStakes: () => {
       return initialState;
     },
   },
 });
 
-export const {addStake, deleteStake, resetToInitialState} = Stakes.actions;
+export const {addStake, deleteStake, resetToInitialStateStakes} =
+  Stakes.actions;
 export default Stakes.reducer;

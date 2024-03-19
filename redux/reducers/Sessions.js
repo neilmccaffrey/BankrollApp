@@ -43,13 +43,17 @@ export const Sessions = createSlice({
         session => session.sessionId !== action.payload,
       );
     },
-    resetToInitialState: () => {
+    resetToInitialStateSessions: () => {
       return initialState;
     },
   },
 });
 
-export const {addSession, updateSession, deleteSession, resetToInitialState} =
-  Sessions.actions;
+export const {
+  addSession,
+  updateSession,
+  deleteSession,
+  resetToInitialStateSessions,
+} = Sessions.actions;
 
 export default Sessions.reducer;

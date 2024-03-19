@@ -13,12 +13,12 @@ const Locations = createSlice({
     addLocation: (state, action) => {
       return [...state, action.payload];
     },
-    resetToInitialState: () => {
+    resetToInitialStateLocations: () => {
       return initialState;
     },
   },
 });
 
-export const {addLocation, deleteLocation, resetToInitialState} =
+export const {addLocation, deleteLocation, resetToInitialStateLocations} =
   Locations.actions;
 export default Locations.reducer;

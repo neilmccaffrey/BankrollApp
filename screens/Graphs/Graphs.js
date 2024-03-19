@@ -205,7 +205,7 @@ const Graphs = ({navigation}) => {
           )}
         </View>
         <View style={style.container}>
-          <Text>Filters:</Text>
+          <Text style={style.textColor}>Filters:</Text>
           <View style={style.radioButtonsContainer}>
             {radioOptions.map(option => (
               <RadioButton

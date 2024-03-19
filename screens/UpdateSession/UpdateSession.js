@@ -185,6 +185,8 @@ const UpdateSession = ({route, navigation}) => {
             <DateTimePickerModal
               isVisible={openDuration}
               mode={'time'}
+              is24Hour={true}
+              display={'spinner'}
               date={new Date(new Date().setHours(8, 0, 0, 0))}
               onConfirm={handlePicker}
               onCancel={() => setOpenDuration(false)}
@@ -295,7 +297,7 @@ const UpdateSession = ({route, navigation}) => {
                 />
                 <Button
                   title={'+ Add Stake'}
-                  isDisabled={false}
+                  isDisabled={customStake.length < 1}
                   onPress={() => {
                     dispatch(addStake(customStake));
                     setCustomStake('');
@@ -382,7 +384,7 @@ const UpdateSession = ({route, navigation}) => {
                 />
                 <Button
                   title={'+ Add Game'}
-                  isDisabled={false}
+                  isDisabled={customGame.length < 1}
                   onPress={() => {
                     dispatch(addGame(customGame));
                     setCustomGame('');
@@ -471,7 +473,7 @@ const UpdateSession = ({route, navigation}) => {
                 />
                 <Button
                   title={'+ Add Location'}
-                  isDisabled={false}
+                  isDisabled={customLocation.length < 0}
                   onPress={() => {
                     dispatch(addLocation(customLocation));
                     setCustomLocation('');

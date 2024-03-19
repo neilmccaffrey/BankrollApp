@@ -170,6 +170,8 @@ const Session = ({navigation}) => {
             <DateTimePickerModal
               isVisible={openDuration}
               mode={'time'}
+              is24Hour={true}
+              display={'spinner'}
               date={new Date(new Date().setHours(8, 0, 0, 0))}
               onConfirm={handlePicker}
               onCancel={() => setOpenDuration(false)}
@@ -282,7 +284,7 @@ const Session = ({navigation}) => {
                 />
                 <Button
                   title={'+ Add Stake'}
-                  isDisabled={false}
+                  isDisabled={customStake.length < 1}
                   onPress={() => {
                     dispatch(addStake(customStake));
                     setCustomStake('');
@@ -369,7 +371,7 @@ const Session = ({navigation}) => {
                 />
                 <Button
                   title={'+ Add Game'}
-                  isDisabled={false}
+                  isDisabled={customGame.length < 1}
                   onPress={() => {
                     dispatch(addGame(customGame));
                     setCustomGame('');
@@ -458,7 +460,7 @@ const Session = ({navigation}) => {
                 />
                 <Button
                   title={'+ Add Location'}
-                  isDisabled={false}
+                  isDisabled={customLocation.length < 1}
                   onPress={() => {
                     dispatch(addLocation(customLocation));
                     setCustomLocation('');

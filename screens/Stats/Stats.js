@@ -318,6 +318,7 @@ const Stats = ({navigation}) => {
             </Text>
           )}
         </View>
+        <Text style={style.textColor}>Filters:</Text>
 
         <View style={style.filtersContainer}>
           {cashPressed && (

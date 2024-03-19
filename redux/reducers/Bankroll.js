@@ -18,7 +18,7 @@ export const Bankroll = createSlice({
     updateBankroll: (state, action) => {
       state.bankrollAmount += action.payload;
     },
-    resetToInitialState: () => {
+    resetToInitialStateBankroll: () => {
       return initialState;
     },
   },
@@ -28,7 +28,7 @@ export const {
   updateBankroll,
   bankrollDeposit,
   bankrollWithdrawal,
-  resetToInitialState,
+  resetToInitialStateBankroll,
 } = Bankroll.actions;
 
 export default Bankroll.reducer;

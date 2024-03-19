@@ -4,4 +4,5 @@ export const Routes = {
   UpdateSession: 'UpdateSession',
   Stats: 'Stats',
   Graphs: 'Graphs',
+  Info: 'Info',
 };

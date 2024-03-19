@@ -6,6 +6,7 @@ import Session from '../screens/Session/Session';
 import UpdateSession from '../screens/UpdateSession/UpdateSession';
 import Stats from '../screens/Stats/Stats';
 import Graphs from '../screens/Graphs/Graphs';
+import Info from '../screens/Info/Info';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const MainNavigation = () => {
       <Stack.Screen name={Routes.UpdateSession} component={UpdateSession} />
       <Stack.Screen name={Routes.Stats} component={Stats} />
       <Stack.Screen name={Routes.Graphs} component={Graphs} />
+      <Stack.Screen name={Routes.Info} component={Info} />
     </Stack.Navigator>
   );
 };
