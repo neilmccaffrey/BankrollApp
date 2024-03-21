@@ -31,11 +31,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import {addStake, deleteStake} from '../../redux/reducers/Stakes';
 import {addGame, deleteGame} from '../../redux/reducers/Games';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {
-  addLocation,
-  deleteLocation,
-  resetToInitialState,
-} from '../../redux/reducers/Locations';
+import {addLocation, deleteLocation} from '../../redux/reducers/Locations';
 
 const Session = ({navigation}) => {
   const sessions = useSelector(state => state.session);
@@ -66,7 +62,7 @@ const Session = ({navigation}) => {
   }, [stake, value]);
 
   const dispatch = useDispatch();
-  //dispatch(resetToInitialState());
+
   //date picker
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);

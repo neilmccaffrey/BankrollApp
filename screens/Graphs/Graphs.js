@@ -15,7 +15,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faChevronLeft,
   faChevronRight,
-  faL,
   faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
 import style from './style';

@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   bankrollDeposit,
   bankrollWithdrawal,
-  resetToInitialState,
 } from '../../redux/reducers/Bankroll';
 import Input from '../Input/Input';
 
@@ -20,7 +19,6 @@ const Header = ({navigation}) => {
   const bankrollAmount = useSelector(state => state.bankroll.bankrollAmount);
 
   const dispatch = useDispatch();
-  //dispatch(resetToInitialState());
 
   return (
     <View style={style.headerContainer}>

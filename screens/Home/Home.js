@@ -4,10 +4,7 @@ import globalStyle from '../../styles/globalStyle';
 import Header from '../../components/Header/Header';
 import SessionItem from '../../components/SessionItem/SessionItem';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  deleteSession,
-  resetToInitialState,
-} from '../../redux/reducers/Sessions';
+import {deleteSession} from '../../redux/reducers/Sessions';
 import {Routes} from '../../navigation/Routes';
 import style from './style';
 import Footer from '../../components/Footer/Footer';
@@ -29,7 +26,6 @@ const Home = ({navigation}) => {
   }, [session.sessions]);
 
   const dispatch = useDispatch();
-  //dispatch(resetToInitialState());
 
   const renderHiddenItem = renData => (
     <View style={style.hidden}>
