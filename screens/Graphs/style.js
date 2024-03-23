@@ -64,7 +64,7 @@ const style = StyleSheet.create({
   pressablesContainer: {
     flexDirection: 'row',
     //justifyContent: 'space-between',
-    marginBottom: verticalScale(8),
+    marginBottom: verticalScale(6),
     alignItems: 'center',
   },
   press: {
