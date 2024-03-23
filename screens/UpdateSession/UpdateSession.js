@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {
   Alert,
+  Keyboard,
   Modal,
   Pressable,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {Routes} from '../../navigation/Routes';
@@ -231,23 +233,21 @@ const UpdateSession = ({route, navigation}) => {
             </View>
           )}
 
-          <View>
-            <Input
-              keyboardType={'number-pad'}
-              initialValue={buyIn}
-              label={'Buy-in:'}
-              onChangeText={val => setBuyIn(val)}
-            />
-          </View>
-          <View>
-            <Input
-              keyboardType={'number-pad'}
-              initialValue={cashOut}
-              label={'Cash-out:'}
-              onChangeText={val => setCashOut(val)}
-            />
-          </View>
+          <Input
+            keyboardType={'number-pad'}
+            initialValue={buyIn}
+            label={'Buy-in:'}
+            onChangeText={val => setBuyIn(val)}
+          />
+
+          <Input
+            keyboardType={'number-pad'}
+            initialValue={cashOut}
+            label={'Cash-out:'}
+            onChangeText={val => setCashOut(val)}
+          />
         </View>
+
         <View style={style.button}>
           <Button
             title={'Update Session'}

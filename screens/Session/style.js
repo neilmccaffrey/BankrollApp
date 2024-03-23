@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     marginHorizontal: horizontalScale(16),
     flex: 1,
     marginTop: verticalScale(20),
-    justifyContent: 'space-between',
+    //justifyContent: 'space-between',
   },
   dropdown: {
     width: horizontalScale(130),
@@ -24,6 +24,7 @@ const style = StyleSheet.create({
   button: {
     marginBottom: verticalScale(15),
     alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   dropdownContainer: {
     flexDirection: 'row',
@@ -117,6 +118,18 @@ const style = StyleSheet.create({
   },
   textColorTrash: {
     color: 'white',
+  },
+  emptySpace: {
+    height: verticalScale(300),
+  },
+  doneButton: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  doneText: {
+    fontSize: scaleFontSize(18),
+    color: '#1DA1F2',
+    fontWeight: '600',
   },
 });
 

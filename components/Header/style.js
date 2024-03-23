@@ -9,6 +9,7 @@ const style = StyleSheet.create({
   headerContainer: {
     borderBottomWidth: 1,
     borderBottomColor: '#EFF2F6',
+    marginTop: verticalScale(8),
   },
   brText: {
     fontSize: scaleFontSize(18),
@@ -19,7 +20,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginBottom: verticalScale(5),
-    marginTop: verticalScale(20),
+    marginTop: verticalScale(15),
     marginHorizontal: horizontalScale(10),
   },
   bankrollPositiveColor: {

@@ -21,7 +21,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: verticalScale(12),
+    marginBottom: verticalScale(6),
   },
   error: {
     fontSize: scaleFontSize(12),
