@@ -124,6 +124,7 @@ const Session = ({navigation}) => {
             <FontAwesomeIcon
               style={style.backButtonText}
               icon={faChevronLeft}
+              size={20}
             />
           </Pressable>
         </View>

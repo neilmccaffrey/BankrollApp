@@ -119,6 +119,7 @@ const UpdateSession = ({route, navigation}) => {
             <FontAwesomeIcon
               style={style.backButtonText}
               icon={faChevronLeft}
+              size={20}
             />
           </Pressable>
           <Pressable
@@ -248,6 +249,7 @@ const UpdateSession = ({route, navigation}) => {
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
               <View>
                 <Input
+                  initialValue={buyIn}
                   keyboardType={'number-pad'}
                   placeholder={'$0'}
                   label={'Buy-in:'}
@@ -255,6 +257,7 @@ const UpdateSession = ({route, navigation}) => {
                 />
 
                 <Input
+                  initialValue={cashOut}
                   keyboardType={'number-pad'}
                   placeholder={'$0'}
                   label={'Cash-out:'}

@@ -174,7 +174,11 @@ const Stats = ({navigation}) => {
       style={[globalStyle.backgroundWhite, globalStyle.flex, style.justify]}>
       <View style={style.container}>
         <Pressable style={style.backButton} onPress={() => navigation.goBack()}>
-          <FontAwesomeIcon style={style.backButtonText} icon={faChevronLeft} />
+          <FontAwesomeIcon
+            style={style.backButtonText}
+            icon={faChevronLeft}
+            size={20}
+          />
         </Pressable>
         {/* Set styles and call respective handlers depending on which button is active */}
         <View style={style.buttonContainer}>

@@ -182,7 +182,11 @@ const Graphs = ({navigation}) => {
       style={[globalStyle.backgroundWhite, globalStyle.flex, style.justify]}>
       <View>
         <Pressable style={style.backButton} onPress={() => navigation.goBack()}>
-          <FontAwesomeIcon style={style.backButtonText} icon={faChevronLeft} />
+          <FontAwesomeIcon
+            style={style.backButtonText}
+            icon={faChevronLeft}
+            size={20}
+          />
         </Pressable>
         <View>
           {bySession && (
