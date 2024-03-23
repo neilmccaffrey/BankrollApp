@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     marginHorizontal: horizontalScale(24),
     flex: 1,
     marginTop: verticalScale(20),
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   dropdown: {
     width: horizontalScale(130),
@@ -23,7 +23,8 @@ const style = StyleSheet.create({
   },
   button: {
     marginBottom: verticalScale(15),
-    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   dropdownContainer: {
     flexDirection: 'row',
@@ -51,18 +52,15 @@ const style = StyleSheet.create({
   dateSize: {
     fontSize: scaleFontSize(20),
   },
-  backButton: {
-    marginBottom: verticalScale(20),
-  },
   backButtonText: {
     color: '#1DA1F2',
   },
   delete: {
+    alignItems: 'center',
     backgroundColor: '#FF0000',
     borderRadius: horizontalScale(50),
     justifyContent: 'center',
     paddingHorizontal: horizontalScale(10),
-    marginBottom: verticalScale(20),
   },
   title: {
     color: 'white',
@@ -126,6 +124,18 @@ const style = StyleSheet.create({
   },
   textColorTrash: {
     color: 'white',
+  },
+  emptySpace: {
+    height: verticalScale(300),
+  },
+  doneButton: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  doneText: {
+    fontSize: scaleFontSize(18),
+    color: '#1DA1F2',
+    fontWeight: '600',
   },
 });
 

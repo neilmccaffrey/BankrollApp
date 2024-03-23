@@ -229,19 +229,21 @@ const Session = ({navigation}) => {
         {Platform.OS === 'ios' && (
           <View>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-              <Input
-                keyboardType={'number-pad'}
-                placeholder={'$0'}
-                label={'Buy-in:'}
-                onChangeText={val => setBuyIn(val)}
-              />
+              <>
+                <Input
+                  keyboardType={'number-pad'}
+                  placeholder={'$0'}
+                  label={'Buy-in:'}
+                  onChangeText={val => setBuyIn(val)}
+                />
 
-              <Input
-                keyboardType={'number-pad'}
-                placeholder={'$0'}
-                label={'Cash-out:'}
-                onChangeText={val => setCashOut(val)}
-              />
+                <Input
+                  keyboardType={'number-pad'}
+                  placeholder={'$0'}
+                  label={'Cash-out:'}
+                  onChangeText={val => setCashOut(val)}
+                />
+              </>
             </TouchableWithoutFeedback>
             {keyboardVisible && (
               <Pressable

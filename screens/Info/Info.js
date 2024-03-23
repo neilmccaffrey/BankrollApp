@@ -41,8 +41,8 @@ const openXProfile = async username => {
 };
 
 const sendEmail = () => {
-  const email = 'test@gmail.com';
-  const subject = encodeURIComponent('PokerStats App');
+  const email = 'pokerstatisticsapp@gmail.com';
+  const subject = encodeURIComponent('PokerStatisics App');
   const mailtoURL = `mailto:${email}?subject=${subject}`;
 
   Linking.openURL(mailtoURL)
@@ -109,11 +109,11 @@ const Info = ({navigation}) => {
         <Pressable
           style={style.buttonContainer}
           onPress={() => {
-            openXProfile('yetepey');
+            openXProfile('pokerstatsapp');
           }}>
           <View style={style.buttonItems}>
             <FontAwesomeIcon icon={faXTwitter} size={22} />
-            <Text style={style.text}>Twitter</Text>
+            <Text style={style.text}>@PokerStatsApp</Text>
           </View>
           <FontAwesomeIcon icon={faChevronRight} color={'#1DA1F2'} size={12} />
         </Pressable>
@@ -124,16 +124,16 @@ const Info = ({navigation}) => {
           }}>
           <View style={style.buttonItems}>
             <FontAwesomeIcon icon={faEnvelope} size={22} />
-            <Text style={style.text}>Email</Text>
+            <Text style={style.text}>pokerstatisticsapp@gmail.com</Text>
           </View>
           <FontAwesomeIcon icon={faChevronRight} color={'#1DA1F2'} size={12} />
         </Pressable>
       </View>
       <Text style={style.tyText}>
-        This is the first version of the PokerStats app. I have a lot of ideas
-        to implement with future updates. Please feel free to contact me through
-        X or Email with any questions, comments, or bug reports. Thank you, and
-        best of luck at the tables!
+        This is the first version of the PokerStatistics App. I have a lot of
+        ideas to implement with future updates. Please feel free to contact me
+        through X or Email with any questions, comments, or bug reports. Thank
+        you, and best of luck at the tables!
       </Text>
     </SafeAreaView>
   );
