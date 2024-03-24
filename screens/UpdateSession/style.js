@@ -137,6 +137,10 @@ const style = StyleSheet.create({
     color: '#1DA1F2',
     fontWeight: '600',
   },
+  backButtonBigger: {
+    height: 25,
+    width: 100,
+  },
 });
 
 export default style;

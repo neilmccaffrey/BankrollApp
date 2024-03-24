@@ -312,12 +312,15 @@ const Session = ({navigation}) => {
       <Modal
         visible={modalVisible}
         onRequestClose={() => setModalVisible(!modalVisible)}>
-        <View style={style.containerModal}>
+        <SafeAreaView style={style.containerModal}>
           <View style={style.buttonsModal}>
-            <Pressable onPress={() => setModalVisible(!modalVisible)}>
+            <Pressable
+              onPress={() => setModalVisible(!modalVisible)}
+              style={style.backButtonBigger}>
               <FontAwesomeIcon
                 style={style.backButtonText}
                 icon={faChevronLeft}
+                size={20}
               />
             </Pressable>
             <View style={style.inputContainer}>
@@ -389,18 +392,21 @@ const Session = ({navigation}) => {
             )}
             rightOpenValue={-75}
           />
-        </View>
+        </SafeAreaView>
       </Modal>
       {/* Modal for game */}
       <Modal
         visible={modalGameVisible}
         onRequestClose={() => setModalGameVisible(!modalGameVisible)}>
-        <View style={style.containerModal}>
+        <SafeAreaView style={style.containerModal}>
           <View style={style.buttonsModal}>
-            <Pressable onPress={() => setModalGameVisible(!modalGameVisible)}>
+            <Pressable
+              onPress={() => setModalGameVisible(!modalGameVisible)}
+              style={style.backButtonBigger}>
               <FontAwesomeIcon
                 style={style.backButtonText}
                 icon={faChevronLeft}
+                size={20}
               />
             </Pressable>
             <View style={style.inputContainer}>
@@ -472,20 +478,22 @@ const Session = ({navigation}) => {
             )}
             rightOpenValue={-75}
           />
-        </View>
+        </SafeAreaView>
       </Modal>
 
       {/* Modal for location */}
       <Modal
         visible={modalLocationVisible}
         onRequestClose={() => setModalLocationVisible(!modalLocationVisible)}>
-        <View style={style.containerModal}>
+        <SafeAreaView style={style.containerModal}>
           <View style={style.buttonsModal}>
             <Pressable
-              onPress={() => setModalLocationVisible(!modalLocationVisible)}>
+              onPress={() => setModalLocationVisible(!modalLocationVisible)}
+              style={style.backButtonBigger}>
               <FontAwesomeIcon
                 style={style.backButtonText}
                 icon={faChevronLeft}
+                size={20}
               />
             </Pressable>
             <View style={style.inputContainer}>
@@ -557,7 +565,7 @@ const Session = ({navigation}) => {
             )}
             rightOpenValue={-75}
           />
-        </View>
+        </SafeAreaView>
       </Modal>
     </SafeAreaView>
   );
