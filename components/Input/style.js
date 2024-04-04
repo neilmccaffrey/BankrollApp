@@ -13,6 +13,7 @@ const style = StyleSheet.create({
     paddingLeft: horizontalScale(8),
     width: horizontalScale(120),
     borderRadius: 30,
+    color: 'black',
   },
   label: {
     color: 'black',

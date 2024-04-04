@@ -42,7 +42,6 @@ const Graphs = ({navigation}) => {
     ...reverse.sessions.filter(item => item.sessionId !== '1'),
   ].reverse();
 
-  const [bySession, setBySession] = useState(true);
   const [tournamentFilter, setTournamentFilter] = useState(false);
   const [cashFilter, setCashFilter] = useState(false);
   const [allFilter, setAllFilter] = useState(true);
@@ -189,23 +188,22 @@ const Graphs = ({navigation}) => {
           />
         </Pressable>
         <View>
-          {bySession && (
-            <LineChart
-              data={{
-                labels: reduceLabels(dates),
-                datasets: [{data: dataSet}],
-              }}
-              width={Dimensions.get('window').width}
-              height={300}
-              yAxisLabel="$"
-              chartConfig={{
-                backgroundColor: '#1DA1F2',
-                backgroundGradientFrom: '#1E2923',
-                backgroundGradientTo: '#1DA1F2',
-                color: (opacity = 1) => `rgba(26,255,146, ${opacity})`,
-              }}
-            />
-          )}
+          <LineChart
+            data={{
+              labels: reduceLabels(dates),
+              datasets: [{data: dataSet}],
+            }}
+            width={Dimensions.get('window').width}
+            height={300}
+            yAxisLabel="$"
+            chartConfig={{
+              backgroundColor: '#1DA1F2',
+              backgroundGradientFrom: '#1E2923',
+              backgroundGradientTo: '#1DA1F2',
+              decimalPlaces: 0,
+              color: (opacity = 1) => `rgba(26,255,146, ${opacity})`,
+            }}
+          />
         </View>
         <View style={style.container}>
           <Text style={style.textColor}>Filters:</Text>

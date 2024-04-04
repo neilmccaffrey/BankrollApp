@@ -101,6 +101,7 @@ const style = StyleSheet.create({
     paddingLeft: horizontalScale(8),
     width: horizontalScale(80),
     borderRadius: 30,
+    color: 'black',
   },
   inputContainer: {
     flexDirection: 'row',

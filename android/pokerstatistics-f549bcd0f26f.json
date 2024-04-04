@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "pokerstatistics",
+  "private_key_id": "f549bcd0f26ff4be79325ed7de531a680a4ad169",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDSEHJhyxwFYtBy\ntPGssXOZ/+sIuJDeMGBprFHxvMJHamSNJt6z/VETSHCOPhKGY1GATkExFPGzFjSY\n/iVm+E+dsMLyYcOS92pq0/LnDmiE7C1z6VxPMm67NJOGIG1AhHHgJSHEO7XyBfkG\n6YSM6PPmsnAcaHKZhq15GPUdda9yplZzJHLmxx1LAVjJRHgZQJE2upTt5g833ty9\nvyd6wKMW78zEH5a9yPK8ufe+CWh7bm8xLJU1He8O8YaDWZFoXnnyueePEERBh6Ti\nnalt0xaOPI8dtLJCyKCJhTL6s1vMOgZ3LWNgh6I17dpQDFHDWq+BOHGChLiWfbGb\nxuV5NvgNAgMBAAECggEABiv4iFoE1T2tfSlGznmaOWSU/bkafIS0WHZ5I96VYK7G\nDIWfVm9zYdsnf25gcfVaECh8bto8LbRR0ErrQ2a5RBtM5v0rV1aQmFno0ZQRSxJ7\nVWP+U89aBIMLcI3kV9hsVhcRMmhEtLsrMWJMBC3V+Km2dIc3Er6ruxqaHQb3pCkk\nSXlS+z8irUq1zLX9zEhRcQZLmHDt6TpCjyR6czQarLP4DolXEJ70ca0xJ+hS4DUw\n4+N0izGJqAXuCo0GgR3t4VuUMy2SQGVa8Avl/I70x1tDRUUdhpSBXR312hsdsMRE\ndxoXwHfB855Q6d6LNLCqA6MFZcHqncySWSH5gd9F8QKBgQD4VwboPtxAgMLje9dg\n0G5i8WKxlV6RW7fAHeIsw2+ok2E/mPmIssfp24JK/mjS4t1bNYpeLZk6XxbNiRA8\nXUPKl6Km/shJFa7Dma0K5bCAPJ3Y1TdhJNQGp6gSoC3e3bafchfTe4Cv2C8WaV3W\nPZ7qbUdbl3ji6+ON9+uDO+aXhQKBgQDYiy6yzFSz6rMLnZ/PpzOr7o9yPQE6srcg\nsUZl/Auo+SJcLMH+oCyRZ4xBPkRpHoHokDqFYpR7Cz9s7nHgF75ZkDX04SWOSZ1F\n4GUDx+S4Lh27MrNSnrdAQYvlg2iZERYmsC+06fHzckAwsrPsbzcfYQyrL86xeYSD\nzdO4ab/Q6QKBgQC69fHKSQDSQt32Gxbj2ScxsB6oKRbgAhfNN/I91wip9gKhuY4r\nPsVIpyxpPy01jvwtHZrFGjkge9QT+ttRRrmxvQUECg5JD1zZ/0kKSi/d60S+qI6f\nwPUq6W+cTiEahvplAaU0Xudb+zo/+iVeFFgejxTIvLmSxRo0mHAjBaatbQKBgCvb\nHG0X1vvNR8/Nb6VlrqBeo2y2kD4sHcygOqrC/jWNp3jVk8CW/g/A0fYQv1gu1o6c\nT03eZkX5RDIypJuHE4UeIN9kje+gVxrk1HCMlnT62gikvw63mFOKMuQb1h5SCJNz\nUWYpj1gHxppWRvxWlepkBGXTO+BTxRPQptWNjUypAoGAf6boxB1EToAMaemdvHHd\nw1/SPRVWgJ2mjsfE6Keqa2pbi73LhTXIPHcBNac2ifVSnwn+c2rBM8WSdTnVTV1X\nIu3NxLqGeCo+fOPElAS5PXQTQhukWFqdUgjLPbNF+rXkkk9LTrVtR8uok9WIu3tj\nQ89IQ0ebS/G2bJnuxILERP8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pokerstatistics@pokerstatistics.iam.gserviceaccount.com",
+  "client_id": "117795235716234169308",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pokerstatistics%40pokerstatistics.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
