@@ -88,7 +88,7 @@ const style = StyleSheet.create({
   },
   containerModal: {
     flex: 1,
-    marginTop: verticalScale(28),
+    marginTop: verticalScale(60),
     marginHorizontal: horizontalScale(24),
   },
   container: {
