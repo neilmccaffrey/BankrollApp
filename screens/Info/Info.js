@@ -41,7 +41,7 @@ const openXProfile = async username => {
 };
 
 const sendEmail = () => {
-  const email = 'pokerstatisticsapp@gmail.com';
+  const email = 'pokerstatisticsmobile@gmail.com';
   const subject = encodeURIComponent('PokerStatisics App');
   const mailtoURL = `mailto:${email}?subject=${subject}`;
 
@@ -128,7 +128,7 @@ const Info = ({navigation}) => {
           }}>
           <View style={style.buttonItems}>
             <FontAwesomeIcon icon={faEnvelope} size={22} />
-            <Text style={style.text}>pokerstatisticsapp@gmail.com</Text>
+            <Text style={style.text}>pokerstatisticsmobile@gmail.com</Text>
           </View>
           <FontAwesomeIcon icon={faChevronRight} color={'#1DA1F2'} size={12} />
         </Pressable>
